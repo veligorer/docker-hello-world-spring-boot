@@ -1,10 +1,9 @@
+def mvnHome
 pipeline {
   agent any
   tools {
     maven 'Maven 3.6.3'
   }
-  def mvnHome 
-
   stages {
     stage('build') {
       steps {
