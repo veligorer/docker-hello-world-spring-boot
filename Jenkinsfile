@@ -17,11 +17,15 @@ pipeline {
       }
     }
     stage ('Build Docker image') {
-      sh "whoami"
-      sh "ls -all /var/run/docker.sock"
-      sh "mv ./target/hello*.jar ./data" 
-      
-      dockerImage = docker.build("hello-world-java")
+      steps {
+        script {
+          sh "whoami"
+          sh "ls -all /var/run/docker.sock"
+          sh "mv ./target/hello*.jar ./data" 
+
+          dockerImage = docker.build("hello-world-java")
+        }
+      }
     }
   }
 }
