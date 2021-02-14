@@ -8,7 +8,7 @@ pipeline {
     stage('build') {
       steps {
         script {
-          mvnHome = tool 'Maven-3.6.3'
+          mvnHome = tool 'Maven 3.6.3'
           echo "${mvnHome}"
           sh 'mvn clean package'
           
