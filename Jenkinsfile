@@ -10,6 +10,11 @@ pipeline {
           sh 'mvn -Dmaven.test.failure.ignore clean package'
         }
       }
+      post {
+        success {
+          junit 'target/surefire-reports/**/*.xml' 
+        }
+      }
     }
   }
 }
