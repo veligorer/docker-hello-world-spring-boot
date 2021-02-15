@@ -1,19 +1,14 @@
 pipeline {
-  agent any
-  tools {
-    maven 'Maven 3.6.3'
-  }
+  agent none
   stages {
-    stage('Build Project') {
-      steps {
-        script {
-          sh 'mvn -Dmaven.test.failure.ignore clean package'
+    stage("Maven install") {
+      agent {
+        docker {
+          image 'maven:3.5.0'
         }
       }
-      post {
-        success {
-          junit '**/target/surefire-reports/TEST-*.xml' 
-        }
+      steps {
+        sh 'mvn clean install'
       }
     }
   }
